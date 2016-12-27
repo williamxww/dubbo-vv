@@ -75,7 +75,7 @@
         </dependency>
 
 
-        <!-- 引入restful,可以去除 -->
+        <!-- 引入restful,可以去除
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo-rpc-rest</artifactId>
@@ -95,6 +95,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        -->
     </dependencies>
 
     <!-- test下也有资源文件 -->
