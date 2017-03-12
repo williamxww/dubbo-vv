@@ -15,18 +15,20 @@
  - limitations under the License.
 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <dubbo:application name="provider" owner="william" />
+    <dubbo:application name="provider" owner="william"/>
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
-    <dubbo:protocol id="p1" name="dubbo" port="20880" />
-    <dubbo:protocol id="p2" name="dubbo" port="20881" />
+    <dubbo:protocol id="p1" name="dubbo" port="20880"/>
+    <dubbo:protocol id="p2" name="dubbo" port="20881"/>
 
 
     <bean id="calculatorImpl" class="com.bow.service.impl.CalculatorImpl"></bean>
-    <dubbo:service interface="com.bow.service.Calculator" ref="calculatorImpl" protocol="p1" group="vv" version="1.2.3"/>
+    <dubbo:service interface="com.bow.service.Calculator" ref="calculatorImpl" protocol="p1" group="vv"
+                   version="1.2.3"/>
     <dubbo:service interface="com.bow.service.Calculator" ref="calculatorImpl" protocol="p2"/>
 </beans>
