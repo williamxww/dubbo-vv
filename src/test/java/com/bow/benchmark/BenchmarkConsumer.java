@@ -39,7 +39,7 @@ public class BenchmarkConsumer extends AbstractBenchmarkClient {
     private static boolean isMultiClient;
 
     public static void main(String[] args) {
-        System.setProperty("dubbo.application.logger", "slf4j");
+        System.setProperty("META-INF.application.logger", "slf4j");
         loadProperties();
         int concurrents = Integer.parseInt(properties.getProperty("concurrents"));
         int runtime = Integer.parseInt(properties.getProperty("runtime"));

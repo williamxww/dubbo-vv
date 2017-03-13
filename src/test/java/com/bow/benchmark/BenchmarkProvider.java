@@ -22,7 +22,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class BenchmarkProvider {
 
     public static void main(String[] args) throws InterruptedException {
-        System.setProperty("dubbo.application.logger", "slf4j");
+        System.setProperty("META-INF.application.logger", "slf4j");
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
                 new String[]{"com/bow/benchmark/provider.xml"});
 
