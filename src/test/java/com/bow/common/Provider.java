@@ -13,6 +13,7 @@ public class Provider {
 
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"com/bow/common/provider.xml"});
+        System.out.println("started");
         try {
             TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);
         } catch (InterruptedException e) {

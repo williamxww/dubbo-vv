@@ -23,7 +23,7 @@
 
     <dubbo:application name="provider" owner="william"/>
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
-    <dubbo:protocol id="p1" name="dubbo" port="20880"/>
+    <dubbo:protocol id="p1" name="dubbo" port="20880" transporter="netty4"/>
 
 
     <bean id="calculatorImpl" class="com.bow.service.impl.CalculatorImpl"></bean>

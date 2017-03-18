@@ -20,7 +20,7 @@ public class Consumer {
 
     @Before
     public void setup() {
-        System.setProperty("META-INF.application.logger", "slf4j");
+        System.setProperty("dubbo.application.logger", "slf4j");
         context = new ClassPathXmlApplicationContext(new String[] { "com/bow/rest/consumer.xml" });
     }
 

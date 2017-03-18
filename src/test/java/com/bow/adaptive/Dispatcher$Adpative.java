@@ -19,8 +19,7 @@ public class Dispatcher$Adpative implements Dispatcher {
             throw new IllegalStateException(
                     "Fail to get extension(com.alibaba.dubbo.remoting.Dispatcher) name from url(" + url.toString()
                             + ") use keys([dispatcher, dispather, channel.handler])");
-        Dispatcher extension = (Dispatcher) ExtensionLoader
-                .getExtensionLoader(Dispatcher.class).getExtension(extName);
+        Dispatcher extension = ExtensionLoader.getExtensionLoader(Dispatcher.class).getExtension(extName);
         return extension.dispatch(arg0, arg1);
     }
 }

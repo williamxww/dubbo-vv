@@ -11,7 +11,8 @@
 
     <dubbo:application name="consumer" owner="william"/>
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
-    <!--<META-INF:consumer filter="elapsedTimeFilter"/>-->
+    <!--<dubbo:consumer filter="elapsedTimeFilter"/>-->
+    <dubbo:protocol transporter="netty4" />
 
     <dubbo:reference id="c1" interface="com.bow.service.Calculator" group="vv"/>
 

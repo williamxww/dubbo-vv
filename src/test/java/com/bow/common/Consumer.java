@@ -16,7 +16,7 @@ public class Consumer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Consumer.class);
 
     public static void main(String[] args) {
-		System.setProperty("META-INF.application.logger", "slf4j");
+		System.setProperty("dubbo.application.logger", "slf4j");
         ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"com/bow/common/consumer.xml"});
         while(true){
             Calculator calculator = context.getBean(Calculator.class);
