@@ -27,5 +27,7 @@
 
 
     <bean id="calculatorImpl" class="com.bow.service.impl.CalculatorImpl"></bean>
-    <dubbo:service interface="com.bow.service.Calculator" ref="calculatorImpl" protocol="p1" group="vv" />
+    <dubbo:service interface="com.bow.service.Calculator" ref="calculatorImpl"  />
+
+    <dubbo:reference id="c1" interface="com.bow.service.Calculator" />
 </beans>

@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration monitorInterval="60">    
-  <appenders>    
-    <Console name="Console" target="SYSTEM_OUT">       
-      <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>    
+<!-- 配置更改,最迟60s生效 -->
+<configuration monitorInterval="60">
+
+  <appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d %p %C{1.} [%t] %m%n"/>
     </Console>
-  </appenders>  
-  
-    
+  </appenders>
+
+
   <loggers>
-    <logger name="com.alibaba" additivity="false" level="error">
-        <AppenderRef ref="Console" level="error"/>
-    </logger>
-    <logger name="org.apache" additivity="false" level="error">
-        <AppenderRef ref="Console" level="error"/>
-    </logger>
-    <logger name="org.I0Itec" additivity="false" level="error">
-      <AppenderRef ref="Console" level="error"/>
-    </logger>
-    <logger name="com.bow" additivity="false" level="info">
-        <AppenderRef ref="Console" level="info"/>
-    </logger>
-      
-    <root level="error">
+    <logger name="org.springframework" additivity="false" level="debug">
       <AppenderRef ref="Console"/>
-    </root>    
-  </loggers>    
+    </logger>
+    <logger name="com.bow" additivity="false" level="trace">
+      <AppenderRef ref="Console"/>
+    </logger>
+
+
+    <!-- 没有特别规定的包采用此配置 -->
+    <root level="debug">
+      <AppenderRef ref="Console"/>
+    </root>
+  </loggers>
 </configuration>
