@@ -7,4 +7,6 @@ package com.bow.service;
 public interface Calculator {
     int calculate(int a, int b);
 
+    int print(int a);
+
 }
