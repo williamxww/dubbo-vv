@@ -15,7 +15,8 @@ import com.alibaba.dubbo.rpc.RpcException;
  * @author vv
  * @since 2017/1/8.
  */
-@Activate(group = Constants.CONSUMER)
+//注释放开就自动激活
+//@Activate(group = Constants.CONSUMER)
 public class ElapsedTimeFilter implements Filter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ElapsedTimeFilter.class);

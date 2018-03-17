@@ -16,16 +16,36 @@
 
 package com.bow.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.Map;
 
+@Service(protocol = {"rest"})
+@Path("benchmarkService")
+@Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
+@Produces({ContentType.APPLICATION_JSON_UTF_8, ContentType.TEXT_XML_UTF_8})
 public interface BenchmarkService {
-    Object echoService(Object request);
 
+    @POST
+    String echoService(String request);
+
+    @POST
+    Object echoObj(Object request);
+
+    @GET
     void emptyService();
 
+    @POST
     public Map<Long, Integer> getUserTypes(List<Long> uids);
-
+    @GET
     public long[] getLastStausIds(long[] uids);
 
 }

@@ -1,19 +1,3 @@
-/*
- *  Copyright 2009-2016 Weibo, Inc.
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 package com.bow.benchmark;
 
 import java.io.IOException;
@@ -22,6 +6,7 @@ import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 
+import com.alibaba.dubbo.qos.common.Constants;
 import com.bow.service.BenchmarkService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -38,8 +23,8 @@ public class BenchmarkConsumer extends AbstractBenchmarkClient {
 
     private static boolean isMultiClient;
 
-    public static void main(String[] args) {
-        System.setProperty("META-INF.application.logger", "slf4j");
+    public static void main(String[] args) throws IOException {
+        System.setProperty(Constants.QOS_PORT, "22222");
         loadProperties();
         int concurrents = Integer.parseInt(properties.getProperty("concurrents"));
         int runtime = Integer.parseInt(properties.getProperty("runtime"));
@@ -55,9 +40,8 @@ public class BenchmarkConsumer extends AbstractBenchmarkClient {
         }
 
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-                new String[] { "com/bow/benchmark/consumer.xml" });
+                new String[] {"com/bow/benchmark/consumer.xml"});
         benchmarkService = applicationContext.getBean("bench", BenchmarkService.class);
-
         new BenchmarkConsumer().start(concurrents, runtime, classname, params);
     }
 
@@ -75,7 +59,7 @@ public class BenchmarkConsumer extends AbstractBenchmarkClient {
         BenchmarkService service;
         if (isMultiClient) {
             ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-                    new String[] { "com/bow/benchmark/consumer.xml" });
+                    new String[] {"com/bow/benchmark/consumer.xml"});
             service = applicationContext.getBean("bench", BenchmarkService.class);
         } else {
             service = benchmarkService;

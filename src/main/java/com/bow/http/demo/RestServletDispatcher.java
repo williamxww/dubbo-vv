@@ -23,7 +23,7 @@ public class RestServletDispatcher extends HttpServletDispatcher {
         deployment.getMediaTypeMappings().put("xml", "text/xml");
         deployment.getProviderClasses().add("com.bow.rest.api.extension.TraceFilter");
         deployment.start();
-        deployment.getRegistry().addResourceFactory(new POJOResourceFactory( CalculatorImpl.class));
+        deployment.getRegistry().addResourceFactory(new POJOResourceFactory( Printer.class));
 
         ServletContext servletContext = servletConfig.getServletContext();
         servletContext.setAttribute(ResteasyDeployment.class.getName(), deployment);

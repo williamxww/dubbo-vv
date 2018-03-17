@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="provider" owner="vv-provider" logger="slf4j"/>
+    <dubbo:registry address="zookeeper://10.170.177.119:2181"/>
+    <!--<dubbo:protocol name="dubbo" port="20880" />-->
+
+
+    <bean id="printerImpl" class="com.bow.service.impl.PrinterImpl" />
+    <dubbo:service interface="Demo.Printer" ref="printerImpl" protocol="ice" />
+
+</beans>

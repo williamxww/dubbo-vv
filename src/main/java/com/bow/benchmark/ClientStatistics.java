@@ -47,6 +47,8 @@ public class ClientStatistics {
     }
 
     public void collectStatistics() {
+        // tps[2]=1000 表示第二秒处理请求1000个
+        long[] tps = new long[statisticTime];
         for (RunnableStatistics statistic : statistics) {
             above0sum += statistic.above0sum;
             above1sum += statistic.above1sum;
@@ -57,19 +59,22 @@ public class ClientStatistics {
             above500sum += statistic.above500sum;
             above1000sum += statistic.above1000sum;
 
-            long runnableTPS = 0;
             for (int i = 0; i < statistic.statisticTime; i++) {
-                runnableTPS += (statistic.TPS[i] + statistic.errTPS[i]);
+                // 将各个线程在第i秒的事务数合并
+                tps[i] += (statistic.TPS[i] + statistic.errTPS[i]);
                 succTPS += statistic.TPS[i];
                 succRT += statistic.RT[i];
                 errTPS += statistic.errTPS[i];
                 errRT += statistic.errRT[i];
             }
-            if (runnableTPS > maxTPS) {
-                maxTPS = runnableTPS;
+
+        }
+        for(long t: tps){
+            if (t > maxTPS) {
+                maxTPS = t;
             }
-            if (runnableTPS < minTPS || minTPS == 0) {
-                minTPS = runnableTPS;
+            if (t < minTPS || minTPS == 0) {
+                minTPS = t;
             }
         }
         allTPS = succTPS + errTPS;
@@ -82,13 +87,13 @@ public class ClientStatistics {
         System.out.println(MessageFormat.format("Avg TPS: {0}, Max TPS: {1}, Min TPS: {2}", (allTPS / statisticTime), maxTPS, minTPS));
         System.out.println(MessageFormat.format("Avg ResponseTime: {0}ms", allRT / allTPS / 1000f));
 
-        System.out.println(MessageFormat.format("RT [0,1]: {0}% {1}/{2}", above0sum * 100 / allTPS, above0sum, allTPS));
-        System.out.println(MessageFormat.format("RT (1,5]: {0}% {1}/{2}", above1sum * 100 / allTPS, above1sum, allTPS));
-        System.out.println(MessageFormat.format("RT (5,10]: {0}% {1}/{2}", above5sum * 100 / allTPS, above5sum, allTPS));
-        System.out.println(MessageFormat.format("RT (10,50]: {0}% {1}/{2}", above10sum * 100 / allTPS, above10sum, allTPS));
-        System.out.println(MessageFormat.format("RT (50,100]: {0}% {1}/{2}", above50sum * 100 / allTPS, above50sum, allTPS));
-        System.out.println(MessageFormat.format("RT (100,500]: {0}% {1}/{2}", above100sum * 100 / allTPS, above100sum, allTPS));
-        System.out.println(MessageFormat.format("RT (500,1000]: {0}% {1}/{2}", above500sum * 100 / allTPS, above500sum, allTPS));
-        System.out.println(MessageFormat.format("RT >1000: {0}% {1}/{2}", above1000sum * 100 / allTPS, above1000sum, allTPS));
+        System.out.println(MessageFormat.format("RT [0,1]:      {0}%    {1}/{2}", above0sum * 100 / allTPS, above0sum, allTPS));
+        System.out.println(MessageFormat.format("RT (1,5]:      {0}%    {1}/{2}", above1sum * 100 / allTPS, above1sum, allTPS));
+        System.out.println(MessageFormat.format("RT (5,10]:     {0}%    {1}/{2}", above5sum * 100 / allTPS, above5sum, allTPS));
+        System.out.println(MessageFormat.format("RT (10,50]:    {0}%    {1}/{2}", above10sum * 100 / allTPS, above10sum, allTPS));
+        System.out.println(MessageFormat.format("RT (50,100]:   {0}%    {1}/{2}", above50sum * 100 / allTPS, above50sum, allTPS));
+        System.out.println(MessageFormat.format("RT (100,500]:  {0}%    {1}/{2}", above100sum * 100 / allTPS, above100sum, allTPS));
+        System.out.println(MessageFormat.format("RT (500,1000]: {0}%    {1}/{2}", above500sum * 100 / allTPS, above500sum, allTPS));
+        System.out.println(MessageFormat.format("RT >1000:      {0}%    {1}/{2}", above1000sum * 100 / allTPS, above1000sum, allTPS));
     }
 }

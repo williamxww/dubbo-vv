@@ -4,22 +4,33 @@
 
   <appenders>
     <Console name="Console" target="SYSTEM_OUT">
-      <PatternLayout pattern="%d %p %C{1.} [%t] %m%n"/>
+      <PatternLayout pattern="%p %-30C [%t] %m%n"/>
     </Console>
   </appenders>
 
 
   <loggers>
-    <logger name="org.springframework" additivity="false" level="debug">
+    <logger name="Ice" level="warn">
+      <AppenderRef ref="Console"/>
+    </logger>
+    <logger name="com.alibaba.dubbo" level="warn">
+      <AppenderRef ref="Console"/>
+    </logger>
+    <logger name="org.apache" level="warn">
+      <AppenderRef ref="Console"/>
+    </logger>
+    <logger name="org.springframework" level="warn">
       <AppenderRef ref="Console"/>
     </logger>
     <logger name="com.bow" additivity="false" level="trace">
       <AppenderRef ref="Console"/>
     </logger>
-
+    <!--<logger name="org.apache.http.client" level="trace">-->
+      <!--<AppenderRef ref="Console"/>-->
+    <!--</logger>-->
 
     <!-- 没有特别规定的包采用此配置 -->
-    <root level="debug">
+    <root level="info">
       <AppenderRef ref="Console"/>
     </root>
   </loggers>

@@ -21,7 +21,7 @@ public class Consumer {
     @Before
     public void setup() {
         System.setProperty("dubbo.application.logger", "slf4j");
-        context = new ClassPathXmlApplicationContext(new String[] { "com/bow/rest/consumer.xml" });
+        context = new ClassPathXmlApplicationContext(new String[] {"com/bow/rest/consumer.xml"});
     }
 
     @Test

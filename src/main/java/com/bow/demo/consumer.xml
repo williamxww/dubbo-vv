@@ -9,11 +9,12 @@
 
 
 
-    <dubbo:application name="consumer" owner="william"/>
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
-    <!--<dubbo:consumer filter="elapsedTimeFilter"/>-->
-    <dubbo:protocol transporter="netty4" />
+    <dubbo:application name="consumer" owner="vv-client"/>
+    <dubbo:registry address="zookeeper://10.170.177.119:2181" />
+    <dubbo:protocol transporter="netty4"  />
 
-    <dubbo:reference id="c1" interface="com.bow.service.Calculator" group="vv"/>
+    <dubbo:reference id="restCal" interface="com.bow.service.Calculator" protocol="rest" />
+    <dubbo:reference id="dubboCal" interface="com.bow.service.Calculator" protocol="dubbo" />
+    <dubbo:reference id="printer" interface="Demo.Printer" protocol="ice" />
 
 </beans>

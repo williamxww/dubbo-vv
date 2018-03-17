@@ -6,8 +6,8 @@
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 
-    <dubbo:application name="consumer"/>
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
-    <dubbo:reference id="bench" interface="com.bow.service.BenchmarkService"/>
+    <dubbo:application name="consumer" logger="slf4j"/>
+    <dubbo:registry address="zookeeper://10.170.177.119:2181"/>
+    <dubbo:reference id="bench" protocol="rest" interface="com.bow.service.BenchmarkService"/>
 
 </beans>

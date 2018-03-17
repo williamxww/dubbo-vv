@@ -5,9 +5,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
+    <dubbo:application name="provider" logger="slf4j"/>
+    <dubbo:registry address="zookeeper://10.170.177.119:2181"/>
+    <dubbo:protocol  name="dubbo" port="20880" />
+    <dubbo:protocol  name="rest" port="9000" />
 
-    <dubbo:application name="consumer"/>
 
-    <dubbo:reference id="userService" interface="com.bow.service.UserService" url="127.0.0.1:8080"/>
-
+    <bean id="benchmarkServiceImpl" class="com.bow.service.impl.BenchmarkServiceImpl"></bean>
+    <dubbo:service protocol="rest" interface="com.bow.service.BenchmarkService" ref="benchmarkServiceImpl"/>
 </beans>
